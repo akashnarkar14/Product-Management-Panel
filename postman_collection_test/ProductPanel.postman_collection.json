@@ -1,15 +1,15 @@
 {
   "info": {
     "name": "Product Panel API",
-    "description": "Complete API collection.\n\n**Switch between environments:**\nEdit Collection → Variables → set `baseUrl` to:\n- Local: `http://localhost:5000/api`\n- Production: `https://product-management-panel.onrender.com/api`\n\nRun **Login** first — token saves automatically.",
+    "description": "Complete API collection.\n\n**How to use:**\n1. Import this collection\n2. Import the environment file you want to use:\n   - **Local:** `ProductPanel_Local.postman_environment.json`\n   - **Production:** `ProductPanel_Production.postman_environment.json`\n3. Select the environment from the top-right dropdown in Postman\n4. Run **Login** first — token saves automatically to all requests",
     "_postman_id": "product-panel-api-v1",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
       "key": "baseUrl",
-      "value": "https://product-management-panel.onrender.com/api",
-      "description": "Change to http://localhost:5000/api for local testing"
+      "value": "http://localhost:5000/api",
+      "description": "Overridden by environment — Local: http://localhost:5000/api | Production: https://product-management-panel.onrender.com/api"
     },
     {
       "key": "localUrl",
