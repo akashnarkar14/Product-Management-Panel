@@ -1,0 +1,44 @@
+<div class="dashboard">
+  <div class="page-header">
+    <div>
+      <h1>Dashboard</h1>
+      <p>Welcome back, {{ userName }} 👋</p>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    @for (stat of stats; track stat.label) {
+      <mat-card class="stat-card" [routerLink]="stat.route">
+        <div class="stat-icon" [style.background]="stat.color + '20'">
+          <mat-icon [style.color]="stat.color">{{ stat.icon }}</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value" [style.color]="stat.color">{{ stat.value }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      </mat-card>
+    }
+  </div>
+
+  <div class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="actions-grid">
+      <mat-card class="action-card" [routerLink]="'/app/categories'">
+        <mat-icon>add_circle</mat-icon>
+        <span>Add Category</span>
+      </mat-card>
+      <mat-card class="action-card" [routerLink]="'/app/products'">
+        <mat-icon>add_shopping_cart</mat-icon>
+        <span>Add Product</span>
+      </mat-card>
+      <mat-card class="action-card" [routerLink]="'/app/products'">
+        <mat-icon>upload_file</mat-icon>
+        <span>Bulk Upload</span>
+      </mat-card>
+      <mat-card class="action-card" [routerLink]="'/app/products'">
+        <mat-icon>download</mat-icon>
+        <span>Download Report</span>
+      </mat-card>
+    </div>
+  </div>
+</div>

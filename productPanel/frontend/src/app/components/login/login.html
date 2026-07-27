@@ -1,0 +1,58 @@
+<div class="login-wrapper">
+  <div class="login-left">
+    <div class="brand">
+      <div class="brand-icon">📦</div>
+      <h1>Product Panel</h1>
+      <p>Manage your products, categories and reports all in one place.</p>
+    </div>
+    <div class="features">
+      <div class="feature-item">✅ Product & Category Management</div>
+      <div class="feature-item">✅ Bulk Upload Support</div>
+      <div class="feature-item">✅ CSV & Excel Reports</div>
+      <div class="feature-item">✅ Advanced Search & Filters</div>
+    </div>
+  </div>
+
+  <div class="login-right">
+    <mat-card class="login-card">
+      <div class="card-header">
+        <div class="avatar">{{ isRegisterMode ? '📝' : '🔐' }}</div>
+        <h2>{{ isRegisterMode ? 'Create Account' : 'Welcome Back' }}</h2>
+        <p>{{ isRegisterMode ? 'Register a new account' : 'Sign in to your account' }}</p>
+      </div>
+
+      <mat-card-content>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email Address</mat-label>
+          <input matInput type="email" [(ngModel)]="email" placeholder="akash@gmail.com" />
+          <mat-icon matPrefix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" placeholder="••••••••" />
+          <mat-icon matPrefix>lock</mat-icon>
+          <button mat-icon-button matSuffix (click)="showPassword = !showPassword" type="button">
+            <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="login-btn" (click)="onSubmit()" [disabled]="loading">
+          @if (loading) {
+            <mat-spinner diameter="22"></mat-spinner>
+            <span>{{ isRegisterMode ? 'Creating...' : 'Signing in...' }}</span>
+          } @else {
+            <span>{{ isRegisterMode ? 'Create Account' : 'Sign In' }}</span>
+          }
+        </button>
+
+        <div class="toggle-mode">
+          {{ isRegisterMode ? 'Already have an account?' : "Don't have an account?" }}
+          <button mat-button color="primary" (click)="toggleMode()">
+            {{ isRegisterMode ? 'Sign In' : 'Register' }}
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

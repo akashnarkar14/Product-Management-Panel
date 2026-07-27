@@ -1,0 +1,54 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav [mode]="sidenavMode" [(opened)]="sidenavOpened" class="sidenav">
+    <div class="sidenav-header">
+      <span class="logo-icon">📦</span>
+      <span class="logo-text">Product Panel</span>
+      @if (isMobile) {
+        <button mat-icon-button class="close-btn" (click)="toggleSidenav()">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </div>
+
+    <div class="nav-links">
+      @for (item of navItems; track item.label) {
+        <a class="nav-item" [routerLink]="item.route" routerLinkActive="active-link" (click)="isMobile && toggleSidenav()">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span>{{ item.label }}</span>
+        </a>
+      }
+    </div>
+
+    <div class="sidenav-footer">
+      <div class="user-info">
+        <mat-icon>account_circle</mat-icon>
+        <span>{{ auth.getUser()?.email }}</span>
+      </div>
+      <button mat-stroked-button color="warn" class="logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <mat-toolbar class="toolbar">
+      @if (isMobile) {
+        <button mat-icon-button (click)="toggleSidenav()" class="menu-btn">
+          <mat-icon>menu</mat-icon>
+        </button>
+      }
+      <span class="toolbar-title">Product Management System</span>
+      <span class="spacer"></span>
+      <button mat-icon-button matTooltip="Logout" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="content-area">
+      <router-outlet />
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -1,0 +1,100 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Categories</h1>
+      <p>Manage your product categories</p>
+    </div>
+    <button mat-raised-button color="primary" (click)="openAdd()">
+      <mat-icon>add</mat-icon> Add Category
+    </button>
+  </div>
+
+  <!-- Add/Edit Form -->
+  @if (showForm) {
+    <mat-card class="form-card">
+      <mat-card-header>
+        <mat-card-title>{{ editMode ? 'Edit Category' : 'Add New Category' }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="outline" style="width:100%">
+          <mat-label>Category Name</mat-label>
+          <input matInput [(ngModel)]="formName" placeholder="e.g. Electronics" />
+          <mat-icon matPrefix>category</mat-icon>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="save()">
+          <mat-icon>save</mat-icon> {{ editMode ? 'Update' : 'Save' }}
+        </button>
+        <button mat-stroked-button (click)="cancel()">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+  }
+
+  <!-- Table -->
+  <mat-card class="table-card">
+    @if (loading) {
+      <div class="skeleton-table">
+        @for (i of [1,2,3,4,5]; track i) {
+          <div class="skeleton-row">
+            <div class="skeleton-cell small"></div>
+            <div class="skeleton-cell large"></div>
+            <div class="skeleton-cell medium"></div>
+            <div class="skeleton-cell medium"></div>
+            <div class="skeleton-cell small"></div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="table-wrapper">
+      <table mat-table [dataSource]="categories" class="full-table">
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let cat; let i = index">{{ i + 1 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="unique_id">
+          <th mat-header-cell *matHeaderCellDef>Unique ID</th>
+          <td mat-cell *matCellDef="let cat">
+            <span class="uuid">{{ cat.unique_id }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let cat">
+            <span class="name-badge">{{ cat.name }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef>Created At</th>
+          <td mat-cell *matCellDef="let cat">{{ cat.created_at | date:'dd MMM yyyy' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let cat">
+            <button mat-icon-button color="primary" matTooltip="Edit" (click)="openEdit(cat)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" matTooltip="Delete" (click)="delete(cat.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      </div>
+
+      @if (categories.length === 0) {
+        <div class="empty-state">
+          <mat-icon>category</mat-icon>
+          <p>No categories yet. Add your first category!</p>
+        </div>
+      }
+    }
+  </mat-card>
+</div>

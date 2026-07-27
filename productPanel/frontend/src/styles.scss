@@ -1,0 +1,101 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f5f6fa;
+}
+
+/* Material table fixes */
+.mat-mdc-table { width: 100%; }
+.mat-mdc-header-row { background: #f8f9fa !important; }
+.mat-mdc-header-cell {
+  font-weight: 700 !important;
+  color: #333 !important;
+  font-size: 13px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.mat-mdc-row:hover .mat-mdc-cell { background: #f0f7ff !important; }
+.mat-mdc-cell { font-size: 14px !important; color: #333; }
+
+/* Mat card fixes */
+.mat-mdc-card { box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important; }
+
+/* Snackbar */
+.mat-mdc-snack-bar-container { border-radius: 8px !important; }
+
+/* Form fields */
+.mat-mdc-form-field { width: 100%; }
+
+/* Skeleton loading */
+.skeleton-table { padding: 8px 0; }
+
+.skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.skeleton-cell {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+  height: 16px;
+
+  &.small { width: 40px; }
+  &.medium { width: 100px; }
+  &.large { flex: 1; }
+  &.img { width: 48px; height: 48px; border-radius: 8px; }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #999; }

@@ -1,0 +1,143 @@
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// Left Side
+.login-left {
+  flex: 1;
+  background: linear-gradient(135deg, #1565c0 0%, #1976d2 50%, #42a5f5 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  color: white;
+
+  .brand {
+    margin-bottom: 48px;
+
+    .brand-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      margin: 0 0 16px;
+      letter-spacing: -1px;
+    }
+
+    p {
+      font-size: 18px;
+      opacity: 0.85;
+      line-height: 1.6;
+      max-width: 380px;
+    }
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .feature-item {
+      font-size: 16px;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      padding: 12px 20px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      max-width: 360px;
+    }
+  }
+}
+
+// Right Side
+.login-right {
+  width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  padding: 40px;
+}
+
+.login-card {
+  width: 100%;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12) !important;
+  padding: 8px;
+
+  .card-header {
+    text-align: center;
+    padding: 24px 16px 8px;
+
+    .avatar {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 0 0 8px;
+    }
+
+    p {
+      color: #666;
+      margin: 0 0 24px;
+      font-size: 14px;
+    }
+  }
+
+  mat-card-content {
+    padding: 16px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.login-btn {
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px !important;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.toggle-mode {
+  text-align: center;
+  margin-top: 16px;
+  color: #666;
+  font-size: 14px;
+
+  button {
+    font-weight: 600;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .login-left {
+    display: none;
+  }
+  .login-right {
+    width: 100%;
+  }
+}
